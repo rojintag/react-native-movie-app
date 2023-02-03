@@ -1,16 +1,34 @@
 import axios from "axios";
 
-export const getMovies = async (type, page) => {
-    try {
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/${type}?api_key=575e8dfa82901be603d23fd367611739&page=${page}`
-        );
+export const getMovies =  async (category,option) => {
 
-        return response.data;
+    const url = `https://api.themoviedb.org/3/${category}/${option}`;
+    console.log(url);
+
+    try{
+    const params = {
+        api_key: '575e8dfa82901be603d23fd367611739',
+        language: 'en-US',
+        page: 1
+        }
+
+    const dataAxios = await axios.create({
+        paramsSerializer: params => qs.stringify(params, {arrayFormat: 'repeat'})
+    })
+    console.log(params);
+
+    const response = await dataAxios.get(url, {params});
+
+    const content= response.data.results;
+
+    return content;
+
     } catch (error) {
         throw error;
     }
-};
+
+
+}
 
 export const getShowDetails = async (itemId, type) => {
     try {
