@@ -29,7 +29,6 @@ const MoviesContainer = ({ navigation }) => {
             ) : (
                 <>
                     <MovieType
-                        options={movieTypes}
                         showType={showType}
                         setShowType={setShowType}
                     />
