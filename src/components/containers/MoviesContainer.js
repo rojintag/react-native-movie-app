@@ -4,7 +4,7 @@ import MovieCardsList from "../lists/MovieCardsList";
 import { getMovies } from "../../api/api";
 import MovieType from "../forms/MovieType";
 
-const MoviesContainer = ({ navigation }) => {
+const MoviesContainer = ({ navigation, options }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [showType, setShowType] = useState("popular");
     const [items, setItems] = useState({});

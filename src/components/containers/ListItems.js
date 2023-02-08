@@ -101,7 +101,7 @@ const ListItems = ({ navigation, options, page, query }) => {
 
       </Center>
       <Box>
-        {alert ? <AlertMessage message='Please enter a search term' /> : null}
+        {/* {alert ? <AlertMessage message='Please enter a search term' /> : null} */}
       </Box>
       <Box style={styles.box}>
         {isLoading ? (
