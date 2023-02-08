@@ -1,45 +1,57 @@
-import { useState, useEffect } from "react";
-import Loading from "../Layout/Loading"
-import MovieCardsList from "../lists/MovieCardsList";
-import { getMovies } from "../../api/api";
-import MovieType from "../forms/MovieType";
+import {Container, Box, Image, Text, HStack} from 'native-base';
 
-const MoviesContainer = ({ navigation, options }) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [showType, setShowType] = useState("popular");
-    const [items, setItems] = useState({});
-
-    const fetchMovies = async () => {
-        setIsLoading(true);
-        const response = await getMovies(showType);
-
-        setItems(response.results);
-
-        setIsLoading(false);
-    };
-
-    useEffect(() => {
-        fetchMovies();
-    }, [showType]);
+const MoviesContainer = props => {
+    const {data,category, navigation} = props;
+                if(!data) {
+                    return null;
+                }
 
     return (
-        <>
-            {isLoading ? (
-                <Loading />
-            ) : (
-                <>
-                    <MovieType
-                        showType={showType}
-                        setShowType={setShowType}
-                    />
-                    <MovieCardsList
-                        navigation={navigation}
-                        items={items}
-                        type={"movie"}
-                    />
-                </>
-            )}
-        </>
+        <Box alignItems="center" mt={5}>
+        <Text
+        fontSize="2xl"
+        fontWeight="bold"
+        color="coolGray.800"
+        textAlign="center"
+        >
+        {data.title ? data.title : data.name}
+        </Text>
+        <Box maxW="80" rounded="lg" overflow="hidden" my={2} mx="auto">
+            <Image
+                source={{uri: `https://image.tmdb.org/t/p/w500/${data.poster_path}`}}
+                alt={data.title ? data.title : data.name}
+                width={250}
+                height={250}
+
+            />
+        </Box>
+        <Box
+        overflow="hidden"
+        w="90%"
+        >
+            <Text
+            fontSize="md"
+            fontWeight="light"
+            color="coolGray.800"
+
+            >
+            {data.overview}
+            </Text>
+        </Box>
+        <HStack space={2} justifyContent="center" mt={2}>
+            <Text fontSize="sm"
+            fontWeight="light"
+            fontStyle="italic"
+            >Popularity: {data.popularity}</Text>
+            <Text> | </Text>
+            <Text fontSize="sm"
+            fontWeight="light"
+            fontStyle="italic"
+            >Release Date: {data.release_date}</Text>
+        </HStack>
+
+ </Box>
+
     );
 };
 

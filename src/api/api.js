@@ -4,55 +4,34 @@ import axios from "axios";
 const API_KEY = '575e8dfa82901be603d23fd367611739'
 const BASE_URL = 'https://api.themoviedb.org/3'
 
-export const getMovies = async (type, page) => {
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/movie/${type}?api_key=${API_KEY}&page=${page}`
-        );
+export const getData = async (category,options) => {
 
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
-
-export const getShowDetails = async (itemId, type) => {
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/${type}/${itemId}?api_key=${API_KEY}`
-        );
-
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
-
-export const getTV = async (type, page) => {
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/tv/${type}?api_key=${API_KEY}&page=${page}`
-        );
-
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
-
-export const getSearchResults = async (query, type, page) => {
-
-    const url = `${BASE_URL}/search/${type}?query=${query}&api_key=${API_KEY}&page=${page}`
-
+    const url = `${BASE_URL}/${category}/${options}?api_key=${API_KEY}`
     console.log(url)
+    const response = await axios.get(url);
+    const results = response.data.results
+    return results
 
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/search/${type}?query=${query}&api_key=${API_KEY}`
-        );
 
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
+}
+
+export const getSearch = async (category,options, query) => {
+
+    const url = `${BASE_URL}/${category}/${options}?api_key=${API_KEY}&query=${query}`
+    console.log(url)
+    const response = await axios.get(url);
+    const results = response.data.results
+    return results
+
+
+}
+
+export const getOne = async (category,id) => {
+
+    const url = `${BASE_URL}/${category}/${id}?api_key=${API_KEY}`
+    console.log(url)
+    const response = await axios.get(url);
+    const results = response.data
+    return results
+
+}

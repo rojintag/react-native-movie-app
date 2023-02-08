@@ -2,10 +2,10 @@ import { FlatList } from "native-base";
 import MovieCard from "../MovieCard";
 
 const MovieCardsList = props => {
-  const {navigation, items, type} = props
+  const {navigation, data, category} = props
   return (
     <FlatList
-        data={items}
+        data={data}
         renderItem={({ item }) => (
             <MovieCard title={item.title ? item.title : item.name}
             image={item.poster_path}
@@ -14,8 +14,9 @@ const MovieCardsList = props => {
             id={item.id}
             category={category === 'search' ? item.media_type : category}
             navigation={navigation}
-            type={type} />
+             />
         )}
+        keyExtractor={item => item.id}
     />
 );
 }

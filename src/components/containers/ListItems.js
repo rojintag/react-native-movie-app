@@ -1,8 +1,7 @@
 import { Center, Box, Button, HStack, Icon } from 'native-base';
-import { StyleSheet } from 'react-native'
 import MovieType from '../forms/MovieType';
 import { useState, useEffect } from 'react';
-import { getMovies, getSearch } from '../../api/api';
+import { getData, getSearch } from '../../api/api';
 import Loading from '../Layout/Loading';
 import MovieCardsList from '../lists/MovieCardsList';
 import { Ionicons } from '@expo/vector-icons';
@@ -40,7 +39,7 @@ const ListItems = ({ navigation, options, page, query }) => {
       setLabel('Choose search type');
     }
     else {
-      getMovies(category, option)
+      getData(category, option)
         .then(response => {
           setData(response);
         })
@@ -101,7 +100,6 @@ const ListItems = ({ navigation, options, page, query }) => {
 
       </Center>
       <Box>
-        {/* {alert ? <AlertMessage message='Please enter a search term' /> : null} */}
       </Box>
       <Box style={styles.box}>
         {isLoading ? (
