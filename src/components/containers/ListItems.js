@@ -115,9 +115,9 @@ const ListItems = ({ navigation, options, page, query }) => {
 
 const styles = {
   button: {
-    height: '10',
-    width: '78',
-    margintop: '7',
+    height: 10,
+    width: 78,
+    margintop: 7,
     backgroundColor: '#86198f'
   },
   box: {

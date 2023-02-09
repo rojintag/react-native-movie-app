@@ -1,4 +1,5 @@
 import { StyleSheet, View, Image, Text } from 'react-native';
+import { Button } from 'native-base';
 
 const MovieCard = props => {
   const { title, image, popularity, release_date, id, category, navigation } = props;
