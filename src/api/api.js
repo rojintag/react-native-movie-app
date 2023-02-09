@@ -26,7 +26,7 @@ export const getSearch = async (category,options, query) => {
 
 }
 
-export const getOne = async (category,id) => {
+export const getShowDetails = async (category,id) => {
 
     const url = `${BASE_URL}/${category}/${id}?api_key=${API_KEY}`
     console.log(url)
