@@ -1,5 +1,7 @@
 import {View, Text} from 'react-native';
-import MoviesContainer from '../components/containers/MoviesContainer';
+import ListItems from '../components/containers/ListItems';
+import {useIsFocused} from '@react-navigation/native';
+
 
 
 const options =[
@@ -10,10 +12,11 @@ const options =[
 ]
 
 const MoviesScreen = ({navigation, route}) => {
+    const isFocused = useIsFocused();
 
     return (
         <View>
-        <MoviesContainer options={options} page={route.name} navigation={navigation}/>
+        {isFocused && <ListItems options={options} page={route.name} navigation={navigation}/>}
         </View>
     );
 }

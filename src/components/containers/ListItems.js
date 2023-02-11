@@ -99,8 +99,6 @@ const ListItems = ({ navigation, options, page, query }) => {
           )}
 
       </Center>
-      <Box>
-      </Box>
       <Box style={styles.box}>
         {isLoading ? (
           <Loading />) : (

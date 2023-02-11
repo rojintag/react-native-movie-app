@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import ListItems from '../components/containers/ListItems';
+import {useIsFocused} from '@react-navigation/native';
 
 const options = [
   { label: "Airing Today", value: "airing_today" },
@@ -9,9 +10,10 @@ const options = [
 ]
 
 const TVShowsScreen = ({ navigation, route }) => {
+  const isFocused = useIsFocused();
   return (
     <View>
-      <ListItems options={options} page={route.name} navigation={navigation} />
+      {isFocused && <ListItems options={options} page={route.name} navigation={navigation} />}
     </View>
   );
 }

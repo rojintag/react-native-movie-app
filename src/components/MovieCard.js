@@ -1,46 +1,43 @@
-import { StyleSheet, View, Image, Text } from 'react-native';
-import { Button } from 'native-base';
+import {Box, Text, Button,Image, HStack} from 'native-base';
 
 const MovieCard = props => {
   const { title, image, popularity, release_date, id, category, navigation } = props;
 
   return (
-    <View style={styles.card}>
-      <View style={styles.image}>
-        <Image
-          source={{ uri: `https://image.tmdb.org/t/p/w500/${image}` }}
-          alt={title}
-          size="lg"
-          resizeMode="cover"
+    <Box
+        bg="white"
+        shadow={1}
+        rounded="lg"
+        overflow="hidden"
+        w="90%"
+        my={2}
+        mx="auto">
+        <HStack space={2} justifyContent="center">
+        <Box p={2} justifyContent="center">
+       <Image
+        source={{uri: `https://image.tmdb.org/t/p/w500/${image}`}}
+        alt={title}
+        size="lg"
+        resizeMode="cover"
+
+
         />
-      </View>
-      <View style={styles.textWrapper}>
-        <Text fontSize="md" fontWeight="bold">{title}</Text>
-        <Text mt="0.5" fontSize="sm">Popularity: {popularity}</Text>
-        <Text mt="0.5" fontSize="sm">Release Date: {release_date}</Text>
-        <Button
-          onPress={() => navigation.navigate('Details', { id, category, title })}
-          variant='ghost'
-        >
-          More Details
-        </Button>
-      </View>
-    </View>
+        </Box>
+        <Box p={2} w="60%">
+            <Text fontSize="md" fontWeight="bold">{title}</Text>
+            <Text mt="0.5" fontSize="sm">Popularity: {popularity}</Text>
+            <Text mt="0.5" fontSize="sm">Release Date: {release_date}</Text>
+            <Button
+            onPress={() => navigation.navigate('Details', {id, category, title})}
+            variant='ghost'
+            >
+            More Details
+            </Button>
+        </Box>
+        </HStack>
+        </Box>
   );
 }
-const styles = StyleSheet.create({
-  crad: {
-    alignItems: "center",
-    marginTop: "5",
-  },
-  image: {
-    p: "2%",
-    justifyContent: "center"
-  },
-  textWrapper: {
-    padding: "2%",
-    justifyContent: "center"
-  }
-})
+
 
 export default MovieCard

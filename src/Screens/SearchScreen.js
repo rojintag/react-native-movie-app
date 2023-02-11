@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { useState } from 'react';
 import ListItems from '../components/containers/ListItems';
 import SearchInput from '../components/forms/SearchInput';
+import {useIsFocused} from '@react-navigation/native';
 
 const options = [
   { label: "Movie", value: "movie" },
@@ -11,6 +12,7 @@ const options = [
 
 const SearchScreen = ({ navigation, route }) => {
   const [query, setQuery] = useState('');
+  const isFocused = useIsFocused();
 
   const handleInput = (query) => {
     setQuery(query);
@@ -18,7 +20,7 @@ const SearchScreen = ({ navigation, route }) => {
   return (
     <View>
       <SearchInput onChangeInput={handleInput} />
-      <ListItems options={options} page={route.name} query={query} navigation={navigation} />
+      {isFocused && <ListItems options={options} page={route.name} query={query} navigation={navigation} />}
 
     </View>
   );

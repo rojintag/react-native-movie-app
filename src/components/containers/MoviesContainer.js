@@ -1,10 +1,7 @@
-import {Container, Box, Image, Text, HStack} from 'native-base';
+import { Box, Image, Text, HStack} from 'native-base';
 
 const MoviesContainer = props => {
-    const {data,category, navigation} = props;
-                if(!data) {
-                    return null;
-                }
+    const {data} = props;
 
     return (
         <Box alignItems="center" mt={5}>
@@ -16,15 +13,15 @@ const MoviesContainer = props => {
         >
         {data.title ? data.title : data.name}
         </Text>
-        <Box maxW="80" rounded="lg" overflow="hidden" my={2} mx="auto">
-            <Image
-                source={{uri: `https://image.tmdb.org/t/p/w500/${data.poster_path}`}}
-                alt={data.title ? data.title : data.name}
-                width={250}
-                height={250}
+        <Box>
+                <Image
+                    source={{uri: `https://image.tmdb.org/t/p/w500/${data.poster_path ? data.poster_path : 'default_image.png'}`}}
+                    alt={data.title ? data.title : data.name}
+                    width={250}
+                    height={250}
 
-            />
-        </Box>
+                />
+            </Box>
         <Box
         overflow="hidden"
         w="90%"

@@ -1,8 +1,7 @@
 import { View } from 'react-native';
-import { getShowDetails } from '../api/api';
+import { getOne} from '../api/api';
 import { useEffect, useState } from 'react';
-import MovieDetails from '../components/MovieDetails';
-
+import MoviesContainer from '../components/containers/MoviesContainer';
 
 const MovieDetailsScreen = props => {
   const { navigation, route } = props
@@ -11,7 +10,7 @@ const MovieDetailsScreen = props => {
 
   const fetchDetails = () => {
 
-    getShowDetails(category, id).then((response) => {
+    getOne(category, id).then((response) => {
       setData(response);
     });
 
@@ -23,7 +22,7 @@ const MovieDetailsScreen = props => {
 
   return (
     <View>
-      <MovieDetails data={data} navigation={navigation} title={title} />
+      <MoviesContainer data={data} navigation={navigation} title={title} />
     </View>
 
   );
